@@ -1,0 +1,134 @@
+.navbar {
+    height: 10vh;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.clear-form-icon {
+    width: 1.2rem;
+    border-radius: 100rem;
+}
+
+.clear-form-icon:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.search-icon {
+    width: 1.2rem;
+    border-radius: 100rem;
+}
+
+.search-icon:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.search-location-div {
+    color: var(--tertiaryColor);
+    background-color: var(--secondaryColor);
+    border-radius: 100rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem 1rem;
+    gap: 0.5rem;
+}
+
+.location-input {
+    color: var(--tertiaryColor);
+    background-color: var(--secondaryColor);
+    border: none;
+    border-radius: 100rem;
+    padding: 1rem 0.1rem;
+    font-size: 1.2rem;
+    width: 35vw;
+}
+
+.location-input:focus {
+    color: var(--tertiaryColor);
+    background-color: var(--secondaryColor);
+    outline: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 100rem;
+}
+
+.break {
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.temp-toggle-div {
+    background-color: var(--secondaryColor);
+
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100rem;
+}
+
+.temp-toggle {
+    width: 1.2rem;
+    aspect-ratio: 1;
+    padding: 0.5rem 0.5rem;
+    border-radius: 100rem;
+    user-select: none;
+}
+
+.temp-toggle:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.location-icon {
+    width: 1.4rem;
+    border-radius: 100rem;
+}
+
+.location-icon:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.location-dropdown-toggle {
+    padding: 0.5rem;
+    background-color: var(--secondaryColor);
+    border-radius: 100rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-wrapper {
+    position: relative;
+}
+
+.location-dropdown {
+    width: 15vw;
+    background-color: var(--secondaryColor);
+    padding: 0.5rem;
+    border-radius: 1rem;
+
+    position: absolute;
+    top: 120%;
+    left: 0;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 0.8rem;
+    border-radius: 1rem;
+    user-select: none;
+}
+
+.dropdown-item:hover {
+    cursor: pointer;
+    background-color: var(--lighterSecondaryColor);
+}
+
+.hidden {
+    display: none;
+}

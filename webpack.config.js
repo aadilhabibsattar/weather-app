@@ -12,6 +12,7 @@ module.exports = {
     devServer: {
         static: "./dist",
         open: true,
+        watchFiles: ["src/**/*"],
     },
     module: {
         rules: [
@@ -28,7 +29,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            favicon: "./src/assets/favicon-32x32.png",
+            favicon: "./src/assets/sun.svg",
+            cache: false,
         }),
     ],
 };
