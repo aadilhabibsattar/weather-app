@@ -1,0 +1,46 @@
+.main {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    padding: 1rem;
+}
+
+.main-content {
+    width: 75vw;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.current-weather-div {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+}
+
+.current-weather-conditions {
+    width: 50%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.current-weather-details {
+    width: 50%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.hourly-weather {
+    height: 15vh;
+    padding: 1rem;
+}
+
+img {
+    width: 100px;
+    height: 50px;
+}
+
+.current-weather-icon {
+    width: 100%;
+}

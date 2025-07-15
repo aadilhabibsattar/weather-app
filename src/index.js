@@ -1,5 +1,5 @@
-import "./styles/style.css";
-
+import "./styles/global.css";
+import { svgs } from "./svg.js";
 const APIKEY = "3HXW7VSTW8PT22AYJVU6ZKY35";
 let city = "dhaka";
 
@@ -34,3 +34,8 @@ const locationDropdown = document.querySelector(".location-dropdown");
 locationDropdownToggle.addEventListener("click", () => {
     locationDropdown.classList.toggle("hidden");
 });
+
+// const currentWeatherIcon = document.querySelector(".current-weather-icon");
+// const cloudyDayIcon = svgs["partlyCloudyDay"];
+
+// currentWeatherIcon.innerHTML += cloudyDayIcon;

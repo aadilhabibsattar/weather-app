@@ -8,7 +8,6 @@
 }
 
 .clear-form-icon {
-    width: 1.2rem;
     border-radius: 100rem;
 }
 
@@ -17,7 +16,6 @@
 }
 
 .search-icon {
-    width: 1.2rem;
     border-radius: 100rem;
 }
 
@@ -33,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 8vh;
     padding: 0rem 1rem;
     gap: 0.5rem;
 }
@@ -42,9 +41,10 @@
     background-color: var(--secondaryColor);
     border: none;
     border-radius: 100rem;
-    padding: 1rem 0.1rem;
-    font-size: 1.2rem;
-    width: 35vw;
+    height: 8vh;
+    padding: 0rem 0.1rem;
+    font-size: 2.5vh;
+    width: 45vw;
 }
 
 .location-input:focus {
@@ -66,13 +66,20 @@
     background-color: var(--secondaryColor);
 
     display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    height: 8vh;
+    width: 9vw;
+    font-size: 2.5vh;
     border-radius: 100rem;
 }
 
 .temp-toggle {
-    width: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.2vw;
     aspect-ratio: 1;
     padding: 0.5rem 0.5rem;
     border-radius: 100rem;
@@ -84,7 +91,6 @@
 }
 
 .location-icon {
-    width: 1.4rem;
     border-radius: 100rem;
 }
 
@@ -93,7 +99,8 @@
 }
 
 .location-dropdown-toggle {
-    padding: 0.5rem;
+    height: 8vh;
+    aspect-ratio: 1;
     background-color: var(--secondaryColor);
     border-radius: 100rem;
 
@@ -121,6 +128,7 @@
 .dropdown-item {
     padding: 0.8rem;
     border-radius: 1rem;
+    font-size: 2vh;
     user-select: none;
 }
 
