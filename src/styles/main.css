@@ -13,34 +13,24 @@
     flex-direction: column;
 }
 
-.current-weather-div {
+.current-weather-information-div {
     width: 100%;
-    height: 50vh;
     display: flex;
+    gap: 1rem;
 }
 
-.current-weather-conditions {
+.current-day-weather-details {
     width: 50%;
     height: 100%;
-    padding: 1rem;
-}
+    padding: 1vw;
+    background-color: var(--secondaryColor);
+    border-radius: 1rem;
 
-.current-weather-details {
-    width: 50%;
-    height: 100%;
-    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hourly-weather {
-    height: 15vh;
-    padding: 1rem;
-}
-
-img {
-    width: 100px;
-    height: 50px;
-}
-
-.current-weather-icon {
-    width: 100%;
+    height: 20vh;
 }

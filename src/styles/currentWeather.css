@@ -1,0 +1,150 @@
+.current-weather-info-top {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.current-weather-information {
+    width: 50%;
+    height: 100%;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+
+    background-color: var(--secondaryColor);
+    border-radius: 1rem;
+}
+
+.current-weather-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.current-weather {
+    display: flex;
+    gap: 1rem;
+}
+
+.address {
+    padding: 0rem 1rem;
+    font-size: 1.5rem;
+}
+
+.current-weather-icon-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-temp {
+    font-size: 9vh;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+}
+
+.current-conditions {
+    font-size: 2.5vh;
+    opacity: 0.5;
+}
+
+.current-temp-min-max-details {
+    flex-grow: 1;
+    padding: 0rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.current-info-detail-div {
+    background-color: var(--lighterSecondaryColor);
+    border-radius: 1rem;
+    width: 30%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4vh;
+}
+
+.min-temp,
+.max-temp,
+.feels-like {
+    font-weight: bold;
+    font-size: 2.5vh;
+}
+
+.min-temp-value,
+.max-temp-value,
+.feels-like-value {
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+/* * Right side */
+.current-day-weather-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.column1,
+.column2 {
+    height: 100%;
+    width: 50%;
+    padding: 0.5rem 0rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail-div {
+    display: flex;
+    height: 20%;
+    width: 100%;
+
+    border-radius: 0.5rem;
+}
+
+.detail-div:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.detail-text {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+    margin-left: 0.9rem;
+}
+
+.detail-title {
+    font-weight: bold;
+    font-size: 2.5vh;
+    opacity: 0.5;
+}
+
+.detail-value {
+    font-size: 2.5vh;
+}
+
+.detail-icon-div {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-icon {
+    width: 5vh;
+}

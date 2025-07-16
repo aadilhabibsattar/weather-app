@@ -1,0 +1,52 @@
+svg.weather-icon {
+    width: 20vh;
+}
+
+.moon-icon {
+    fill: hsl(43, 100%, 50%);
+}
+
+.wind-icon {
+    fill: hsl(0, 0%, 80%);
+}
+
+.fog-icon {
+    fill: hsl(0, 0%, 60%);
+}
+
+.sunrise-icon {
+    fill: hsl(43, 71%, 51%);
+}
+
+.sunset-icon {
+    fill: hsl(29, 100%, 50%);
+}
+
+.uv-icon {
+    fill: hsl(7, 83%, 55%);
+}
+
+.water-icon {
+    fill: hsl(207, 100%, 50%);
+}
+
+.pressure-icon {
+    fill: hsl(0, 0%, 59%);
+}
+
+.cloudy-icon {
+    fill: hsl(0, 0%, 100%);
+}
+
+.rain-icon {
+    fill: hsl(207, 53%, 65%);
+}
+
+.partly-cloudy-day-icon,
+.partly-cloudy-night-icon {
+    height: 120%;
+}
+
+.wind-direction-icon {
+    fill: hsl(0, 0%, 80%);
+}
