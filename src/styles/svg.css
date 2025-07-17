@@ -23,7 +23,7 @@ svg.weather-icon {
 }
 
 .uv-icon {
-    fill: hsl(7, 83%, 55%);
+    fill: hsl(7, 100%, 60%);
 }
 
 .water-icon {
@@ -31,7 +31,8 @@ svg.weather-icon {
 }
 
 .pressure-icon {
-    fill: hsl(0, 0%, 59%);
+    /* fill: hsl(0, 0%, 59%); */
+    fill: hsl(0, 95%, 57%);
 }
 
 .cloudy-icon {

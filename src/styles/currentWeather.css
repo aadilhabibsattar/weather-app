@@ -5,21 +5,9 @@
     justify-content: space-evenly;
 }
 
-.current-weather-information {
-    width: 50%;
-    height: 100%;
-    padding: 1vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5rem;
-
-    background-color: var(--secondaryColor);
-    border-radius: 1rem;
-}
-
 .current-weather-details {
     display: flex;
+    padding: 1vw;
     flex-direction: column;
     justify-content: center;
     gap: 1vh;
@@ -78,7 +66,7 @@
 .max-temp,
 .feels-like {
     font-weight: bold;
-    font-size: 2.5vh;
+    font-size: 2.8vh;
 }
 
 .min-temp-value,
@@ -147,4 +135,40 @@
 
 .detail-icon {
     width: 5vh;
+}
+
+svg.hour-icon {
+    width: 4vh;
+    padding: none !important;
+}
+
+svg.hour-icon.partly-cloudy-day-icon,
+svg.hour-icon.partly-cloudy-night-icon {
+    transform: translate(0, -0.4vh);
+}
+
+.hour {
+    padding: 0.5rem;
+    width: 8vw;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hour:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.hour-weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hour-text {
+    font-size: 2vh;
 }

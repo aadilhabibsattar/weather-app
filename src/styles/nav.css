@@ -123,6 +123,9 @@
     top: 120%;
     left: 0;
     z-index: 10;
+
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: -1vw 1vh 2rem rgba(0, 0, 0, 0.4);
 }
 
 .dropdown-item {

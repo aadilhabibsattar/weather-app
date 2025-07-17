@@ -1,36 +1,65 @@
 .main {
     display: flex;
     justify-content: center;
-    height: 80vh;
     padding: 1rem;
 }
 
 .main-content {
-    width: 75vw;
+    width: 80vw;
     height: 100%;
 
     display: flex;
     flex-direction: column;
+    gap: 2vh;
 }
 
 .current-weather-information-div {
     width: 100%;
     display: flex;
-    gap: 1rem;
+    gap: 1vw;
+}
+
+.current-weather-information {
+    width: 50%;
+    height: 50vh;
+    background-color: var(--secondaryColor);
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1vw;
 }
 
 .current-day-weather-details {
     width: 50%;
-    height: 100%;
-    padding: 1vw;
-    background-color: var(--secondaryColor);
+    height: 50vh;
     border-radius: 1rem;
-
+    background-color: var(--secondaryColor);
+    padding: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .hourly-weather {
-    height: 20vh;
+    padding: 1vw;
+    background-color: var(--secondaryColor);
+    border-radius: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.5rem;
+}
+
+.weekly-weather {
+    padding: 1v;
+    background-color: var(--secondaryColor);
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
