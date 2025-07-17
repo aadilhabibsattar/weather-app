@@ -4,6 +4,7 @@ import { format, parse } from "date-fns";
 
 const APIKEY = "3HXW7VSTW8PT22AYJVU6ZKY35";
 let city = "dhaka";
+let units = "metric";
 
 const locationDropdownToggle = document.querySelector(
     ".location-dropdown-toggle"
@@ -16,7 +17,7 @@ locationDropdownToggle.addEventListener("click", () => {
 
 async function fetchWeatherData() {
     return await fetch(
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=${APIKEY}&contentType=json`,
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${units}&key=${APIKEY}&contentType=json`,
         { mode: "cors" }
     );
 }
