@@ -76,7 +76,7 @@
     opacity: 0.7;
 }
 
-/* * Right side */
+/* ! Right side */
 .current-day-weather-details {
     display: flex;
     justify-content: space-between;
@@ -137,6 +137,8 @@
     width: 5vh;
 }
 
+/* ! hourly weather */
+
 svg.hour-icon {
     width: 4vh;
     padding: none !important;
@@ -171,4 +173,74 @@ svg.hour-icon.partly-cloudy-night-icon {
 
 .hour-text {
     font-size: 2.3vh;
+}
+
+/* ! weekly weather */
+.weekly-weather-container {
+    display: flex;
+    justify-content: center;
+}
+
+.weekly-weather {
+    padding: 2vh 2vw;
+    border-radius: 1rem;
+    width: 45%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.weekday-container-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vw;
+    font-size: 2.5vh;
+
+    padding: 0vh 1vw;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.weekday-container-div:hover {
+    background-color: var(--lighterSecondaryColor);
+}
+
+.weekday-name {
+    width: 25%;
+}
+
+.weekday-temp {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    padding: 0 2vw;
+
+    width: 50%;
+}
+
+.temp-bar {
+    flex: 1;
+    height: 1vh;
+    border-radius: 100rem;
+    background-image: linear-gradient(
+        to right,
+        /* hsl(220, 100%, 60%),
+        hsl(220, 100%, 60%),
+        hsl(0, 0%, 90%), */
+            hsl(60, 100%, 60%),
+        hsl(30, 100%, 60%),
+        /* hsl(0, 100%, 60%), */ hsl(0, 100%, 60%)
+    );
+}
+
+.weekda-weather-icon-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekday-weather-icon {
+    width: 5vh;
 }

@@ -1,6 +1,6 @@
 import "./styles/global.css";
 import { svgs } from "./svg.js";
-import { format, parse } from "date-fns";
+import { format, parse, parseISO, isToday } from "date-fns";
 
 const APIKEY = "3HXW7VSTW8PT22AYJVU6ZKY35";
 let city = "dhaka";
@@ -79,7 +79,7 @@ humidityValue.innerHTML += `${Math.round(
     weatherData.currentConditions.humidity
 )}%`;
 pressureValue.innerHTML += `${weatherData.currentConditions.pressure} mb`;
-windSpeedValue.innerHTML += `${weatherData.currentConditions.windspeed} mph`;
+windSpeedValue.innerHTML += `${weatherData.currentConditions.windspeed} kph`;
 windDirectionValue.innerHTML += `${weatherData.currentConditions.winddir}&deg;`;
 uvValue.innerHTML += `${weatherData.currentConditions.uvindex}`;
 
@@ -100,7 +100,7 @@ hoursToday.forEach((hour) => {
     const hourStr = hour.datetime.split(":")[0];
     const hourNum = parseInt(hourStr, 10);
 
-    if (hourNum % 2 === 0 && hourNum != 0) {
+    if (hourNum % 2 === 0) {
         const hourTime = formatHour(hour.datetime);
         const hourIcon = hour.icon;
         const hourTemp = hour.temp;
@@ -125,4 +125,44 @@ function addHourlyInfoToPage(hourTime, hourIcon, hourTemp) {
     if (iconDiv) {
         iconDiv.classList.add("hour-icon");
     }
+}
+
+let i;
+const weeklyWeatherDiv = document.querySelector(".weekly-weather");
+const weeklyWeather = weatherData.days;
+
+function getDayOfWeek(dateStr) {
+    const date = parseISO(dateStr);
+
+    if (isToday(date)) {
+        return "Today";
+    }
+    return format(date, "EEEE");
+}
+
+for (i = 0; i < 7; i++) {
+    const day = weeklyWeather[i];
+    const weekdayName = getDayOfWeek(day.datetime);
+    const minTemp = Math.round(day.tempmin);
+    const maxTemp = Math.round(day.tempmax);
+    const logo = svgs[`${day.icon}`];
+    weeklyWeatherDiv.innerHTML += `
+    <div class="weekday-container-div">
+        <div class="weekday-name">${weekdayName}</div>
+        <div class="weekday-weather-logo-div">${logo}</div>
+        <div class="weekday-temp">
+            <div class="temp-low">${minTemp}&deg;</div>
+            <div class="temp-bar"></div>
+            <div class=temp-high">${maxTemp}&deg;</div>
+        </div>
+    </div>
+    `;
+
+    const weekdayLogo = document.querySelectorAll(
+        ".weekday-weather-logo-div > svg"
+    );
+    weekdayLogo.forEach((logo) => {
+        logo.classList.add("weekday-weather-icon");
+        logo.classList.remove("weather-icon");
+    });
 }
