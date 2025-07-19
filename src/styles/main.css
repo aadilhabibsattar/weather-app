@@ -21,7 +21,7 @@
 
 .current-weather-information {
     width: 50%;
-    height: 50vh;
+    /* height: 50vh; */
     background-color: var(--secondaryColor);
     border-radius: 1rem;
 
@@ -34,7 +34,7 @@
 
 .current-day-weather-details {
     width: 50%;
-    height: 50vh;
+    /* height: 50vh; */
     border-radius: 1rem;
     background-color: var(--secondaryColor);
     padding: 1vw;

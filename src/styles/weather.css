@@ -19,7 +19,8 @@
 }
 
 .address {
-    padding: 0rem 1rem;
+    padding: 0 1vw;
+    padding-top: 1vh;
     font-size: 1.5rem;
 }
 
@@ -44,7 +45,7 @@
 
 .current-temp-min-max-details {
     flex-grow: 1;
-    padding: 0rem 0.5rem;
+    padding: 1vh 0.5vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -215,7 +216,7 @@ svg.hour-icon.partly-cloudy-night-icon {
     display: flex;
     align-items: center;
     gap: 0.8vw;
-    padding: 0 2vw;
+    padding-left: 2vw;
 
     width: 50%;
 }
@@ -224,15 +225,6 @@ svg.hour-icon.partly-cloudy-night-icon {
     flex: 1;
     height: 1vh;
     border-radius: 100rem;
-    background-image: linear-gradient(
-        to right,
-        /* hsl(220, 100%, 60%),
-        hsl(220, 100%, 60%),
-        hsl(0, 0%, 90%), */
-            hsl(60, 100%, 60%),
-        hsl(30, 100%, 60%),
-        /* hsl(0, 100%, 60%), */ hsl(0, 100%, 60%)
-    );
 }
 
 .weekda-weather-icon-div {
