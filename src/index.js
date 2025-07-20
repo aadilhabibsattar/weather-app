@@ -190,7 +190,6 @@ let weatherData = await getWeatherData();
 
 const address = document.querySelector(".address");
 const currentWeatherIcon = document.querySelector(".current-weather-icon-div");
-const weatherIcon = svgs[weatherData.currentConditions.icon];
 const currentTemp = document.querySelector(".current-temp");
 const currentConditions = document.querySelector(".current-conditions");
 const minTemp = document.querySelector(".min-temp-value");
@@ -215,6 +214,7 @@ function clearPageInformation() {
 function updatePageInformation() {
     clearPageInformation();
 
+    const weatherIcon = svgs[weatherData.currentConditions.icon];
     currentWeatherIcon.innerHTML = weatherIcon;
     address.innerHTML = `${weatherData.resolvedAddress} - ${formatToAmPm(
         weatherData.currentConditions.datetime
@@ -325,6 +325,7 @@ async function refreshPage() {
 
     try {
         weatherData = await getWeatherData();
+        console.log(weatherData);
         updatePageInformation();
     } catch (error) {
         errorMessageDiv.textContent = error.message;
