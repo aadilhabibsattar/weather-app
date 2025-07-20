@@ -179,26 +179,10 @@ async function getWeatherData() {
         if (!data || data.error) {
             throw new Error(data.error || "Invalid location");
         }
-
         return data;
     } catch (error) {
         console.error(error);
         throw error;
-    }
-}
-
-async function refreshPage() {
-    errorMessageDiv.classList.add("hidden");
-    loadingOverlay.classList.add("active");
-
-    try {
-        weatherData = await getWeatherData();
-        updatePageInformation();
-    } catch (error) {
-        errorMessageDiv.textContent = error.message;
-        errorMessageDiv.classList.remove("hidden");
-    } finally {
-        loadingOverlay.classList.remove("active");
     }
 }
 
@@ -322,16 +306,31 @@ function updatePageInformation() {
         const tempBars = document.querySelectorAll(".temp-bar");
         tempBars.forEach((bar, index) => {
             const day = weeklyWeather[index];
-            const tempMin = day.tempmin;
-            const tempMax = day.tempmax;
+            let minTemp = Math.round(day.tempmin);
+            let maxTemp = Math.round(day.tempmax);
 
             if (units == "us") {
-                minTemp = convertToCelsius(tempMin);
-                maxTemp = convertToCelsius(tempMax);
+                minTemp = convertToCelsius(minTemp);
+                maxTemp = convertToCelsius(maxTemp);
             }
-            const gradient = getGradient(tempMin, tempMax);
+            const gradient = getGradient(minTemp, maxTemp);
             bar.style.backgroundImage = gradient;
         });
+    }
+}
+
+async function refreshPage() {
+    errorMessageDiv.classList.add("hidden");
+    loadingOverlay.classList.add("active");
+
+    try {
+        weatherData = await getWeatherData();
+        updatePageInformation();
+    } catch (error) {
+        errorMessageDiv.textContent = error.message;
+        errorMessageDiv.classList.remove("hidden");
+    } finally {
+        loadingOverlay.classList.remove("active");
     }
 }
 
