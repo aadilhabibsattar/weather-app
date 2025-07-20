@@ -30,3 +30,23 @@ svg {
     padding: 0.5rem;
     cursor: pointer;
 }
+
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+}
+
+#loading-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}

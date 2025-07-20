@@ -1,14 +1,96 @@
 import "./styles/global.css";
 import { svgs } from "./svg.js";
-import { format, parse, parseISO, isToday } from "date-fns";
+import { getGradient } from "./colors.js";
+import {
+    saveLocationsToStorage,
+    loadLocationsFromLocalStorage,
+} from "./storage.js";
+import { formatToAmPm, formatHour, getDayOfWeek } from "./dates.js";
 
 const APIKEY = "3HXW7VSTW8PT22AYJVU6ZKY35";
-let city = "toronto";
+let location = "toronto";
+
 let units = "metric";
 let windSpeedUnit = "kph";
 
+const errorMessageDiv = document.querySelector(".error-message");
+const loadingOverlay = document.getElementById("loading-overlay");
+
 const celsiusToggle = document.querySelector(".celsius");
 const fahrenheitToggle = document.querySelector(".fahrenheit");
+
+const locationDropdown = document.querySelector(".location-dropdown");
+const locationDropdownToggle = document.querySelector(
+    ".location-dropdown-toggle"
+);
+const saveLocationInputDiv = document.querySelector(".save-location-input-div");
+const saveLocationInput = document.querySelector(".save-location-input");
+const addSavedLocationButton = document.querySelector(
+    ".add-saved-location-button"
+);
+
+const locationInput = document.querySelector(".location-input");
+const searchIcon = document.querySelector(".search-icon");
+const clearSearchIcon = document.querySelector(".clear-form-icon");
+
+function convertToCelsius(temp) {
+    return (temp - 32) / 1.8;
+}
+
+addSavedLocationButton.addEventListener("click", () => {
+    saveLocationInputDiv.classList.toggle("hidden");
+    saveLocationInput.focus();
+});
+
+saveLocationInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        const location = saveLocationInput.value.trim();
+        if (!location) return;
+
+        const newItem = document.createElement("div");
+        newItem.classList.add("dropdown-item");
+        newItem.innerHTML = `
+            <div class="location-name">${location}</div>
+            <div class="delete-location-button">
+                <svg class="delete-location-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>window-close</title>
+                    <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+                </svg>
+            </div>
+        `;
+
+        const referenceNode = document.querySelector(
+            ".save-location-input-div"
+        );
+
+        locationDropdown.insertBefore(newItem, referenceNode);
+        saveLocationsToStorage();
+        saveLocationInput.value = "";
+        saveLocationInputDiv.classList.toggle("hidden");
+    }
+});
+
+locationDropdown.addEventListener("click", (event) => {
+    const deleteButton = event.target.closest(".delete-location-button");
+    if (deleteButton) {
+        const dropdownItem = deleteButton.closest(".dropdown-item");
+        if (dropdownItem) dropdownItem.remove();
+        saveLocationsToStorage();
+        return;
+    }
+
+    const dropdownItem = event.target.closest(".dropdown-item");
+    if (dropdownItem) {
+        const locationNameDiv = dropdownItem.querySelector(".location-name");
+        if (locationNameDiv) {
+            const locationName = locationNameDiv.textContent.trim();
+            location = locationName;
+            locationDropdown.classList.toggle("show");
+            refreshPage();
+        }
+    }
+});
 
 celsiusToggle.addEventListener("click", () => {
     if (units == "us") {
@@ -35,10 +117,6 @@ fahrenheitToggle.addEventListener("click", () => {
     }
     return;
 });
-
-const locationInput = document.querySelector(".location-input");
-const searchIcon = document.querySelector(".search-icon");
-const clearSearchIcon = document.querySelector(".clear-form-icon");
 
 locationInput.addEventListener("input", () => {
     if (locationInput.value.trim() !== "") {
@@ -71,25 +149,20 @@ searchIcon.addEventListener("click", (e) => {
 });
 
 function submitSearch() {
-    const cityInput = locationInput.value.trim();
-    if (cityInput) {
-        city = cityInput;
+    const locationName = locationInput.value.trim();
+    if (locationName) {
+        location = locationName;
         refreshPage();
     }
 }
 
-const locationDropdownToggle = document.querySelector(
-    ".location-dropdown-toggle"
-);
-const locationDropdown = document.querySelector(".location-dropdown");
-
 locationDropdownToggle.addEventListener("click", () => {
-    locationDropdown.classList.toggle("hidden");
+    locationDropdown.classList.toggle("show");
 });
 
 async function fetchWeatherData() {
     return await fetch(
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${units}&key=${APIKEY}&contentType=json`,
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${units}&key=${APIKEY}&contentType=json`,
         { mode: "cors" }
     );
 }
@@ -98,24 +171,38 @@ async function getWeatherData() {
     try {
         const response = await fetchWeatherData();
         if (!response.ok) {
-            throw new Error("Resposne not OK");
+            throw new Error("Location not found or network error");
         }
 
         const data = await response.json();
+
+        if (!data || data.error) {
+            throw new Error(data.error || "Invalid location");
+        }
+
         return data;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }
 
 async function refreshPage() {
-    weatherData = await getWeatherData();
+    errorMessageDiv.classList.add("hidden");
+    loadingOverlay.classList.add("active");
 
-    updatePageInformation();
+    try {
+        weatherData = await getWeatherData();
+        updatePageInformation();
+    } catch (error) {
+        errorMessageDiv.textContent = error.message;
+        errorMessageDiv.classList.remove("hidden");
+    } finally {
+        loadingOverlay.classList.remove("active");
+    }
 }
 
 let weatherData = await getWeatherData();
-console.log(weatherData);
 
 const address = document.querySelector(".address");
 const currentWeatherIcon = document.querySelector(".current-weather-icon-div");
@@ -135,56 +222,6 @@ const windDirectionValue = document.querySelector(".wind-direction-value");
 const uvValue = document.querySelector(".uv-value");
 const hourlyWeatherDiv = document.querySelector(".hourly-weather");
 const weeklyWeatherDiv = document.querySelector(".weekly-weather");
-
-// * Date formatting
-function formatToAmPm(timeStr) {
-    const parsedTime = parse(timeStr, "HH:mm:ss", new Date());
-    return format(parsedTime, "hh:mm a");
-}
-
-function formatHour(timeStr) {
-    const parsedDate = parse(timeStr, "HH:mm:ss", new Date());
-    return format(parsedDate, "h a");
-}
-
-function getDayOfWeek(dateStr) {
-    const date = parseISO(dateStr);
-
-    if (isToday(date)) {
-        return "Today";
-    }
-    return format(date, "EEEE");
-}
-
-function convertToCelsius(temp) {
-    return (temp - 32) / 1.8;
-}
-
-function getGradient(minTemp, maxTemp) {
-    if (units == "us") {
-        minTemp = convertToCelsius(minTemp);
-        maxTemp = convertToCelsius(maxTemp);
-    }
-
-    const minHue = mapTempToHue(minTemp);
-    const maxHue = mapTempToHue(maxTemp);
-
-    return `linear-gradient(to right, hsl(${minHue}, 100%, 60%), hsl(${maxHue}, 100%, 60%))`;
-}
-
-function mapTempToHue(temp) {
-    const min = 0;
-    const max = 40;
-
-    if (temp < min) {
-        temp = min;
-    } else if (temp > max) {
-        temp = max;
-    }
-    const percent = (temp - min) / (max - min);
-
-    return 220 - percent * 220;
-}
 
 function clearPageInformation() {
     weeklyWeatherDiv.innerHTML = "";
@@ -285,10 +322,18 @@ function updatePageInformation() {
         const tempBars = document.querySelectorAll(".temp-bar");
         tempBars.forEach((bar, index) => {
             const day = weeklyWeather[index];
-            const gradient = getGradient(day.tempmin, day.tempmax);
+            const tempMin = day.tempmin;
+            const tempMax = day.tempmax;
+
+            if (units == "us") {
+                minTemp = convertToCelsius(tempMin);
+                maxTemp = convertToCelsius(tempMax);
+            }
+            const gradient = getGradient(tempMin, tempMax);
             bar.style.backgroundImage = gradient;
         });
     }
 }
 
 updatePageInformation();
+loadLocationsFromLocalStorage();

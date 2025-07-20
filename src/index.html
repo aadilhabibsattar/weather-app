@@ -7,9 +7,31 @@
     </head>
     <body>
         <div id="app">
+            <div id="loading-overlay"></div>
             <!-- * Navbar -->
             <nav>
                 <div class="navbar">
+                    <div class="location-wrapper">
+                        <div class="location-dropdown-toggle">
+                            <svg
+                                class="location-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <title>map-marker</title>
+                                <path
+                                    d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="location-dropdown">
+ 
+                            <div class="save-location-input-div hidden"><input type="text" class="save-location-input"></div>
+                            <div class="add-saved-location-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                            </div>
+                        </div>
+                    </div>
                     <div class="search-location-div">
                         <svg
                             class="search-icon"
@@ -42,27 +64,11 @@
                         <div class="break">|</div>
                         <div class="temp-toggle fahrenheit">&deg;F</div>
                     </div>
-                    <div class="location-wrapper">
-                        <div class="location-dropdown-toggle">
-                            <svg
-                                class="location-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                            >
-                                <title>map-marker</title>
-                                <path
-                                    d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"
-                                />
-                            </svg>
-                        </div>
-                        <div class="location-dropdown hidden">
-                            <div class="dropdown-item">Dhaka</div>
-                            <div class="dropdown-item">New York</div>
-                        </div>
-                    </div>
                 </div>
             </nav>
             <!-- * -->
+
+            <div class="error-message hidden"></div>
 
             <!-- * Main section -->
             <div class="main">

@@ -10,7 +10,6 @@
     padding: 1vw;
     flex-direction: column;
     justify-content: center;
-    gap: 1vh;
 }
 
 .current-weather {
@@ -60,7 +59,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4vh;
+    gap: 2vh;
+    transition: all 0.15s ease-in-out;
+}
+
+.current-info-detail-div:hover {
+    background-color: hsl(200, 5%, 21%);
 }
 
 .min-temp,
@@ -101,6 +105,8 @@
     width: 100%;
 
     border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
 }
 
 .detail-div:hover {
@@ -160,6 +166,8 @@ svg.hour-icon.partly-cloudy-night-icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
 }
 
 .hour:hover {
@@ -202,6 +210,8 @@ svg.hour-icon.partly-cloudy-night-icon {
     padding: 0vh 1vw;
     width: 100%;
     border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
 }
 
 .weekday-container-div:hover {

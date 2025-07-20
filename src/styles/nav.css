@@ -64,6 +64,10 @@
     width: 45vw;
 }
 
+::placeholder {
+    user-select: none;
+}
+
 .location-input:focus {
     color: var(--tertiaryColor);
     background-color: var(--secondaryColor);
@@ -104,7 +108,7 @@
 
     cursor: pointer;
 
-    transition: all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .temp-toggle:hover {
@@ -143,7 +147,7 @@
 
 .location-dropdown {
     width: 15vw;
-    background-color: var(--secondaryColor);
+    background-color: var(--lighterSecondaryColor);
     padding: 0.5rem;
     border-radius: 1rem;
 
@@ -153,20 +157,110 @@
     z-index: 10;
 
     border: 1px solid rgba(0, 0, 0, 0.3);
-    box-shadow: -1vw 1vh 2rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0vw 2vh 1rem rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+
+    opacity: 0;
+    transform: translateY(-5%);
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.location-dropdown.show {
+    opacity: 1;
+    transform: translateY(0%);
+    pointer-events: auto;
 }
 
 .dropdown-item {
-    padding: 0.8rem;
+    padding: 1vh 1vw;
     border-radius: 1rem;
-    font-size: 2vh;
+    font-size: 2.5vh;
     user-select: none;
+    transition: all 0.1s ease-in-out;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-location-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100rem;
+    transition: all 0.15s ease-in-out;
+    opacity: 0.3;
+}
+
+.delete-location-icon {
+    width: 2.5vh;
+    padding: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.delete-location-button:hover {
+    opacity: 1;
+}
+
+.delete-location-icon:hover {
+    fill: rgb(167, 38, 38);
+}
+
+.add-location-button:hover,
+.dropdown-item:hover {
+    cursor: pointer;
+    background-color: hsl(200, 5%, 21%);
+}
+
+.save-location-input-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+    border-radius: 1rem;
     transition: all 0.1s ease-in-out;
 }
 
-.dropdown-item:hover {
+.save-location-input {
+    width: 100%;
+    height: 120%;
+    background-color: var(--secondaryColor);
+    color: var(--tertiaryColor);
+    border: 1px solid hsl(0, 0%, 27%);
+    padding: 0.2vw;
+    border-radius: 0.2rem;
+    font-size: 2.5vh;
+}
+
+.save-location-input:focus {
+    outline: none;
+    border-color: hsl(0, 0%, 30%);
+}
+
+.add-saved-location-button {
+    border-radius: 100rem;
+    user-select: none;
+    transition: all 0.1s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5vh;
     cursor: pointer;
-    background-color: var(--lighterSecondaryColor);
+}
+
+.add-saved-location-button:hover {
+    background-color: hsl(200, 5%, 21%);
+}
+
+.add-location-button > svg {
+    width: 3vh;
+    aspect-ratio: 1;
 }
 
 .hidden {
